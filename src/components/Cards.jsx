@@ -6,8 +6,8 @@ const Cards = ({ dish }) => {
 
   return (
     <>
-      {dish.map((item, index) => (
-        <div key={index} className="h-[20vh] w-screen flex flex-row">
+      {dish?.map((item, index) => (
+        <div key={index} className="h-[20vh] flex flex-row my-5">
           <div className="bg-blue-300 h-full w-[70%]">
             <div>1</div>
             <div className="">
@@ -19,8 +19,8 @@ const Cards = ({ dish }) => {
             </div>
           </div>
           <div className="bg-yellow-400 h-full w-[10%]"></div>
-          <div className="h-full w-[20%]">
-            <img src={item?.dish_image} alt="" />
+          <div className="h-full w-[20%] flex justify-center pt-5">
+            <img className="w-30 h-25 rounded-xl" src={item?.dish_image} alt="" />
           </div>
         </div>
       ))}
