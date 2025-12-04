@@ -18,14 +18,14 @@ const App = () => {
 
   return (
     <div className="h-[100vh]">
-      <div className="h-[15vh] bg-red-200 flex flex-col justify-center ">
+      <div className="h-[18vh] bg-gray-50 flex flex-col justify-center ">
         <div className="h-[40%] flex items-center justify-between px-5 gap-5">
           <h1 className="text-xl flex-1">UNI Resto Cafe</h1>
           <h1>My Orders</h1>
           <ShoppingCart />
         </div>
         <ul
-          className=" flex justify-around gap-6 px-5 pt-5
+          className=" flex justify-around gap-10 px-5 pt-9
           overflow-x-auto whitespace-nowrap 
           hide-scrollbar"
         >
@@ -36,7 +36,7 @@ const App = () => {
           ))}
         </ul>
       </div>
-      <div className="h-[85vh] bg-green-100">
+      <div className="h-[120vh] bg-gray-200">
         <Cards dish={data[0]?.table_menu_list[0]?.category_dishes} />
       </div>
     </div>
