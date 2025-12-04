@@ -7,24 +7,21 @@ const App = () => {
   const [data, setData] = useState([]);
   const [menu, setMenu] = useState(0);
 
- 
-const [cart, setCart] = useState(() => {
-  const saved = localStorage.getItem("cart");
-  return saved ? JSON.parse(saved) : {};
-});
+  const [cart, setCart] = useState(() => {
+    const saved = localStorage.getItem("cart");
+    return saved ? JSON.parse(saved) : {};
+  });
 
-   useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]); // <-- Only when cart changes
+  }, [cart]);
 
-    // Calculate cart count
   const totalItems = Object.values(cart).reduce(
     (acc, item) => acc + item.quantity,
     0
   );
 
-  console.log(totalItems)
-
+  console.log(totalItems);
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -39,14 +36,14 @@ const [cart, setCart] = useState(() => {
 
   return (
     <div className="h-[100vh]">
-      <div className="h-[18vh] bg-gray-50 flex flex-col justify-center sticky top-0">
+      <div className="h-[20vh] bg-gray-50 flex flex-col justify-center sticky top-0">
         <div className="h-[40%] flex items-center justify-between px-5 gap-5 ">
           <h1 className="text-xl flex-1">UNI Resto Cafe</h1>
           <h1>My Orders</h1>
           <div className="relative">
             <ShoppingCart />
-          <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs min-w-[18px] h-[18px] flex items-center justify-center rounded-full">
-            {totalItems}
+            <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs min-w-[18px] h-[18px] flex items-center justify-center rounded-full">
+              {totalItems}
             </span>
           </div>
         </div>
@@ -80,9 +77,12 @@ const [cart, setCart] = useState(() => {
           ))}
         </ul>
       </div>
-      <div className="h-[120vh] bg-gray-200">
-        <Cards dish={data[0]?.table_menu_list[menu]?.category_dishes}  cart={cart}
-  setCart={setCart} />
+      <div className="h-[123vh] bg-gray-200">
+        <Cards
+          dish={data[0]?.table_menu_list[menu]?.category_dishes}
+          cart={cart}
+          setCart={setCart}
+        />
       </div>
     </div>
   );
