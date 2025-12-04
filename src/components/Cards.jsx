@@ -1,7 +1,8 @@
+import { Disc } from "lucide-react";
 import React, { useState, useEffect } from "react";
 
-const Cards = ({ dish }) => {
-  const [cart, setCart] = useState({});
+const Cards = ({ dish, cart, setCart }) => {
+  // const [cart, setCart] = useState({});
 
   // Load cart from localStorage when component mounts
   useEffect(() => {
@@ -49,15 +50,17 @@ const Cards = ({ dish }) => {
   return (
     <>
       {dish?.map((item) => (
-        <div key={item.dish_id} className="h-[20vh] flex flex-row my-1 bg-white">
-
+        <div
+          key={item.dish_id}
+          className="h-[20vh] flex flex-row my-1 bg-white"
+        >
           {/* Index */}
-          <div className="h-full w-[2%] px-2 mt-2">
-            
-          </div>
+          <div className="h-full w-[2%] mt-3 "> 
+            <Disc className={`${ item.dish_Availability?"text-green-400":"text-red-400" }`}/>
+            </div>
 
           {/* Item Info */}
-          <div className="h-full w-[78%] mt-1">
+          <div className="h-full w-[78%] mt-1 px-2">
             <h1 className="text-lg font-semibold mt-1">{item.dish_name}</h1>
             <h1>
               {item.dish_currency} {item.dish_price}
@@ -67,11 +70,15 @@ const Cards = ({ dish }) => {
             </p>
 
             {item.dish_Availability ? (
-              <div className="bg-green-500 w-28 flex flex-row justify-around items-center rounded-full mt-1 text-white">
-                <button onClick={() => handleRemove(item)}> - </button>
-                <p>{getQuantity(item)}</p>
-                <button onClick={() => handleAdd(item)}> + </button>
-              </div>
+              <>
+                <div className="bg-green-500 w-28 flex flex-row justify-around items-center rounded-full mt-1 text-white">
+                  <button onClick={() => handleRemove(item)}> - </button>
+                  <p>{getQuantity(item)}</p>
+                  <button onClick={() => handleAdd(item)}> + </button>
+                </div>
+
+                <p className="text-red-500 mt-1">{item?.addonCat.length > 0 ? "Customization Available":""}</p>
+              </>
             ) : (
               <p className="text-red-500 mt-1">Not Available</p>
             )}
